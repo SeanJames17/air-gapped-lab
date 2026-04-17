@@ -10,6 +10,8 @@ The environment is purpose‑built to model real‑world restricted networks whe
 systems operate without internet connectivity, while access is selectively brokered
 through controlled infrastructure services.
 
+Supporting our Customer's who operate with these environments is a driving factor in this lab's creation.
+
 ---
 
 ## Lab Environment
