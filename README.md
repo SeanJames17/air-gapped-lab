@@ -23,6 +23,18 @@ through controlled infrastructure services.
 
 ## Virtualized Infrastructure (Hyper‑V)
 
+### Patch Management
+
+#### WSUS Server
+- Windows Server VM running Windows Server Update Services (WSUS)
+- Connected exclusively to the **Air‑Gap** virtual switch
+- No direct internet access
+- Acts as the internal patch source for air‑gapped systems
+
+The WSUS server is used as the authoritative patch repository for the isolated
+environment. Patch metadata and content are managed internally to support update
+and remediation workflows without granting internet access to production systems.
+
 ### Network & Security
 - **pfSense Firewall (VM)**
   - Acts as the central firewall and traffic broker
