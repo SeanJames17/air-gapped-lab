@@ -92,6 +92,37 @@ Some services failed initially due to upstream dependencies not being available.
 
 ---
 
+## UNC Paths & File Share Access
+
+### Challenge: UNC Path Formatting and Access Issues
+While configuring Tanium Deploy to retrieve packages from an internal file share,
+I encountered issues related to UNC path formatting and authentication.
+
+Initially, I had limited hands‑on experience working with UNC paths in enterprise
+deployments, which led to problems such as:
+- Incorrect UNC path formatting
+- Access failures despite the share being reachable
+- Confusion around which credentials were being used by Tanium services
+
+These issues caused deployment attempts to fail even though the file share itself
+was online.
+
+**Resolution:**
+- Validated proper UNC path syntax (e.g. `\\server\share`)
+- Reviewed share permissions vs NTFS permissions to ensure both were correctly set
+- Confirmed which service accounts and credentials Tanium was using to access the share
+- Adjusted authentication settings within Tanium to align with the configured file share
+- Tested access incrementally to isolate formatting vs permission issues
+
+**Lesson Learned:**
+- UNC paths are sensitive to formatting and authentication context
+- Successful access requires both correct permissions and correct credential usage
+- Enterprise tools often access file shares differently than interactive user sessions
+- Trial‑and‑error, combined with methodical validation, is often necessary when working
+  with file‑based integrations in restricted environments
+
+---
+
 ## Key Takeaways
 
 - Network issues are often the root cause of seemingly unrelated problems
