@@ -13,6 +13,17 @@ where most systems operate without direct internet access.
 
 ## Network Segmentation Model
 
+### Air‑Gapped Patch Flow
+
+- The WSUS server resides on the Air‑Gap virtual switch
+- Air‑gapped systems, including Tanium servers, are permitted to communicate
+  with WSUS for patch retrieval
+- WSUS communicates only with authorized internal systems
+- Patch distribution occurs entirely within the isolated network
+
+This design allows systems to remain fully air‑gapped while still supporting
+regular patching and compliance workflows.
+
 The lab is segmented using multiple Hyper‑V virtual switches to enforce logical and
 security boundaries between systems.
 
@@ -92,6 +103,18 @@ The Domain Controller provides the following services to the air‑gapped enviro
 
 ---
 
+## Patch Management & Tanium Integration
+
+The lab integrates **Tanium Patch** with an internal WSUS server to support patching
+in an air‑gapped environment.
+
+- Tanium servers operate without direct internet access
+- WSUS serves as the internal patch content source
+- Tanium Patch coordinates patch deployment using WSUS-hosted content
+- No endpoint or Tanium infrastructure requires internet connectivity to patch systems
+
+This approach mirrors enterprise and regulated environments where external repositories
+are inaccessible, and patching must be performed through approved internal services.
 ## Access & Trust Boundaries
 
 - Air‑gapped systems do not have direct internet access
@@ -112,6 +135,15 @@ This network design emphasizes:
 
 The environment enables practical testing and troubleshooting of enterprise software
 and identity services in scenarios where connectivity is constrained or unavailable.
+
+---
+
+## Simplified Traffic Flow
+
+Air‑Gapped Systems → WSUS → (Internal Patch Distribution)  
+Air‑Gapped Systems → Domain Controller → (DNS, AD, NTP, File Services)
+
+No air‑gapped system communicates directly with the internet.
 
 ---
 
