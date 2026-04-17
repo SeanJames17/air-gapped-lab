@@ -1,0 +1,135 @@
+# Air-Gapped Tanium Content Management
+
+## Overview
+Operating the Tanium Platform in an air‑gapped environment requires additional planning
+and manual content management compared to internet‑connected deployments.
+
+This document describes the core Tanium modules in use within the lab and the steps
+taken to support them in a fully isolated network where external repositories and
+feeds are unavailable.
+
+---
+
+## General Air‑Gap Considerations
+
+In this environment:
+- Tanium servers do not have direct internet access
+- All content normally retrieved from external sources must be manually imported
+- Internal services and file shares are used to stage content for Tanium modules
+
+This mirrors regulated and high‑security environments where connectivity is restricted
+by design.
+
+---
+
+## Threat Response – Intel
+
+### Challenge
+Tanium Threat Response relies on intel feeds that are normally retrieved
+automatically from external sources. Intel defines one or more conditions that might indicate malicious behavior on endpoints. 
+Threat Response can leverage multiple sources of intel to identify and alert on potential threats in an environment. 
+In addition to supporting third-party intelligence sources, Tanium provides threat intelligence called Signals. 
+Intel documents and Signals, generally referred to as intel, interact with Threat Response to provide comprehensive monitoring and alerting.
+
+In an air‑gapped environment, these feeds are unavailable by default.
+
+### Approach
+- Required Intel was manually imported
+- Intelligence content was imported into the Tanium environment
+- Feeds were configured and validated internally to ensure proper ingestion
+
+### Outcome
+Threat Response was able to operate using manually maintained intelligence sources,
+demonstrating how security tooling must be adapted in offline environments.
+
+---
+
+## Comply – Standards & Benchmarks
+
+### Challenge
+Compliance standards and benchmarks are normally downloaded automatically.
+
+In an air‑gapped environment, this content must be managed manually.
+
+### Approach
+- Compliance standards were manually imported into Tanium Comply
+- Benchmarks and supporting content were validated post‑import
+- Compliance functionality was verified without internet dependency
+
+### Outcome
+The Comply module was fully functional within the isolated environment using
+manually maintained standards.
+
+---
+
+## Tanium Vulnerability Library (TVL)
+
+### Challenge
+The Tanium Vulnerability Library (TVL) is a critical dependency for vulnerability
+assessment and reporting.
+
+Without internet access, TVL content is not available by default.
+
+### Approach
+- TVL content was manually imported into the environment
+- Library availability and hash were validated in the platform
+- Vulnerability assessments were confirmed to operate using the imported library
+
+### Outcome
+Vulnerability functionality was successfully enabled in an air‑gapped deployment,
+demonstrating the additional operational overhead required in restricted environments.
+
+---
+
+## Patch Management – WSUS Integration
+
+### Challenge
+Patch content cannot be downloaded directly by Tanium servers or endpoints.
+
+### Approach
+- A dedicated WSUS server was deployed on the Air‑Gap network
+- WSUS functions as the internal patch content source
+- Tanium Patch coordinates patch deployment using WSUS-hosted content
+- No direct internet access is required for endpoints or Tanium infrastructure
+
+### Outcome
+Patching workflows operate fully within the isolated network, reflecting common
+enterprise and regulated deployment models.
+
+---
+
+## Deploy – File‑Based Package Distribution
+
+### Challenge
+The Tanium Deploy module typically relies on externally accessible repositories
+or content sources.
+
+In an air‑gapped environment, package delivery must be handled internally.
+
+### Approach
+- A file share was created on the Domain Controller
+- Appropriate permissions were configured to allow Tanium servers to access content
+- Authentication settings were configured within Tanium to securely reach the file share
+- Deployment packages are staged internally and retrieved by Tanium Deploy
+
+### Outcome
+Software deployments function correctly without requiring internet access, using
+internal file services and controlled authentication.
+
+---
+
+## Key Takeaways
+
+- Air‑gapped Tanium deployments require significant manual content management
+- Modules that assume external connectivity must be adapted to internal workflows
+- File shares, DNS, authentication, and permissions become critical dependencies
+- Documentation and repeatability are essential in restricted environments
+
+---
+
+## Closing Notes
+
+Managing Tanium in an air‑gapped lab highlighted the operational differences between
+connected and restricted deployments. This experience reinforced the importance of
+planning, internal services, and security‑conscious design when supporting enterprise
+tools in isolated networks.
